@@ -1,0 +1,44 @@
+<div id="login" class="container">
+  <form>
+    <div class="form-group">
+      <label>Kullanıcı Adı</label>
+      <input type="text" [(ngModel)]="user.username" class="form-control" name="kullanıcıadı" aria-describedby="emailHelp">
+    </div>
+    <div class="form-group">
+      <label>Şifre</label>
+      <input type="password" [(ngModel)]="user.password" class="form-control" name="sifre">
+    </div>
+    <div class="form-group">
+      <label>Güvenlik Sorusu</label>
+      <input type="text" [(ngModel)]="user.hint" class="form-control" name="güvenliksorusu">
+    </div>
+    <div class="form-group">
+      <label>Cevabı</label>
+      <input type="text" [(ngModel)]="user.answerhint" class="form-control" name="cevap">
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox"   ng-model="checked"   class="custom-control-input" id="customCheck1">
+          <label class="custom-control-label" for="customCheck1">Alıcı</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" name="Satıcı" class="custom-control-input" id="customCheck2">
+          <label class="custom-control-label" for="customCheck2">Satıcı</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck3">
+          <label class="custom-control-label" for="customCheck3">Alıcı-Satıcı</label>
+        </div>
+      </div>
+      <div class="col" id="telefon" ng-show="checked">
+        <div class="form-group" >
+          <label>Telefon</label>
+          <input type="number"  [(ngModel)]="user.mobilephone" ng-show="checked" class="form-control" name="telefon">
+        </div>
+      </div>
+
+    </div>
+    <button class="btn btn-primary"  style="float: right;" type="submit" (click)="createUsers(user)" >Submit</button>
+  </form>
+</div>

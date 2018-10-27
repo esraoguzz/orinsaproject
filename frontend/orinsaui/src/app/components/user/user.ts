@@ -5,7 +5,7 @@ export class User {
   answerhint: string;
   typeMember: string;
   mobilephone: number;
-  alıcı:boolean;
+  alici:boolean;
   satıcı:boolean;
   alıcıandsatıcı:boolean;
 }

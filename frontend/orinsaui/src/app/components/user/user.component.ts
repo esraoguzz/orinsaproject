@@ -13,8 +13,11 @@ import { by } from "protractor";
 export class UserComponent implements OnInit {
   constructor(private userService: UserService) {}
   user: any = {};
+  checked= true;
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   createUsers(user: User) {
     this.userService.createUsers(user);

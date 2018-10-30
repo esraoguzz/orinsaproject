@@ -13,13 +13,25 @@ import { by } from "protractor";
 export class UserComponent implements OnInit {
   constructor(private userService: UserService) {}
   user: any = {};
-  checked= true;
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   createUsers(user: User) {
     this.userService.createUsers(user);
+  }
+
+  showhiddendiv(option: number) {
+    console.log("sayı" + option);
+
+    if (option == 1) {
+      document.getElementById("extra_info").hidden = true;
+      console.log("1.ci basıldı");
+    } else if (option == 2) {
+      document.getElementById("extra_info").hidden = false;
+      console.log("2.ci basıldı");
+    } else if (option == 3) {
+      document.getElementById("extra_info").hidden = false;
+      console.log("3.ci basıldı");
+    }
   }
 }

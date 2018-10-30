@@ -1,6 +1,5 @@
 <div id="login" class="container">
-
-  <form>
+  <form class="form-horizontal">
     <div class="form-group">
       <label>Kullanıcı Adı</label>
       <input type="text" [(ngModel)]="user.username" class="form-control" name="kullanıcıadı" aria-describedby="emailHelp">
@@ -17,32 +16,43 @@
       <label>Cevabı</label>
       <input type="text" [(ngModel)]="user.answerhint" class="form-control" name="cevap">
     </div>
-    <div class="row">
-        <div class="col-md-3">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" [(ngModel)]="user.alici" name="alici" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">Alıcı</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" name="Satıcı" class="custom-control-input" id="customCheck2">
-            <label class="custom-control-label" for="customCheck2">Satıcı</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck3">
-            <label class="custom-control-label" for="customCheck3">Alıcı-Satıcı</label>
-          </div>
+    <div class="form-group">
+        <div class="radio">
+          <label><input type="radio" name="optradio" (click)="showhiddendiv(1)" checked>Alıcı</label>
+       
+          <label><input type="radio" name="optradio" style="margin-left: 16px" (click)="showhiddendiv(2)">Satıcı</label>
+       
+          <label><input type="radio" name="optradio" style="margin-left: 16px"  (click)="showhiddendiv(3)">Alıcı-Satıcı</label>
+        </div>      
+    </div>
+    <div > 
+        <div class="form-group">
+          <label>Telefon</label>
+          <input type="text" [(ngModel)]="user.mobilephone" class="form-control" name="telefon">
         </div>
-        <div class="col" id="telefon" [hidden]="!user.alici" >
+        <div id="extra_info" hidden=true>
           <div class="form-group">
-            <label>Telefon</label>
-            <input type="number" [(ngModel)]="user.mobilephone" ng-show="checked" class="form-control" name="telefon">
+            <label>Şirket Adı</label>
+            <input type="text" class="form-control" name="sirketAdi">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlFile">Ticaret Sicil Belgesi</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Vergi Levhası</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
           </div>
         </div>
-    
+
       </div>
-      <button class="btn btn-primary" style="float: right;" type="submit" (click)="createUsers(user)">Submit</button>
-    
-    
+    <div class="center-div">
+      <input type="checkbox" > <label><a href="link/html-text-link.html">Gizlilik Sözleşmesini</a> okudum, kabul ediyorum.</label>
+      <br>
+      <input type="checkbox" > <label><a href="link/html-text-link.html">Şartlar ve koşulları</a> okudum, kabul ediyorum.</label>
+
+    </div>
+    <button class="btn btn-primary" style="float: right;" type="submit" (click)="createUsers(user)">Üyeliğimi
+      Onaylıyorum</button>
   </form>
- 
 </div>

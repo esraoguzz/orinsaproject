@@ -1,3 +1,11 @@
 #login{
     margin-top:30px;
 }
+
+.mat-radio-button ~ .mat-radio-button {
+    padding-right: 16px;
+  }
+  .center-div
+{ margin: 0 auto;
+    width: fit-content; 
+}

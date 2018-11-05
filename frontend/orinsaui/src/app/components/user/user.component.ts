@@ -5,7 +5,8 @@ import { element } from "@angular/core/src/render3/instructions";
 import { by } from "protractor";
 import {
   FileUploader,
-  FileSelectDirective
+  FileSelectDirective,
+  FileItem
 } from "ng2-file-upload/ng2-file-upload";
 import { environment } from "src/environments/environment";
 
@@ -19,33 +20,35 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService) {}
   user: any = {};
   typeMemberId: number = 1;
+  file1:FileItem;
 
-  public uploader: FileUploader = new FileUploader({
-    url: environment.path + "/upload",
+  file2:FileItem;
+
+  public uploader1: FileUploader = new FileUploader({
+    url: environment.path + "/upload/sicilLevhasi",
+    itemAlias: "photo"
+  });
+  public uploader2: FileUploader = new FileUploader({
+    url: environment.path + "/upload/vergiLevhasi",
     itemAlias: "photo"
   });
 
   ngOnInit() {
-    this.uploader.onAfterAddingFile = file => {
+    this.uploader1.onAfterAddingFile = file=> {
+      this.file1 = file;
       file.withCredentials = false;
-      console.log("dosya eklenmesi");
-      console.log(file);
-      this.uploader.uploadItem(file);
-      console.log(this.uploader.isUploading);
     };
-
-    this.uploader.onCompleteItem = (
-      item: any,
-      response: any,
-      status: any,
-      headers: any
-    ) => {
-      console.log("ImageUpload:uploaded:", item, status, response, headers);
-      alert("File uploaded successfully");
+    this.uploader2.onAfterAddingFile = file=> {
+      this.file2 = file;
+      file.withCredentials = false;
     };
   }
   createUsers(user: User) {
+
     user.typeMemberId = this.typeMemberId;
+    this.uploader1.uploadItem(this.file1);
+    this.uploader2.uploadItem(this.file2);
+
     this.userService.createUsers(user);
   }
 

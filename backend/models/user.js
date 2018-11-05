@@ -9,7 +9,8 @@ function User(data) {
   this.typeMemberId= data.typeMemberId;
   this.mobilephone = data.mobilephone; 
   this.foundationName = data.foundationName; 
-  this.ceretificateOfRegistration = data.ceretificateOfRegistration; 
+  this.certificateOfRegistration = data.certificateOfRegistration; 
+  this.taxPlate = data.taxPlate; 
 
 }
 // Member functions go here:

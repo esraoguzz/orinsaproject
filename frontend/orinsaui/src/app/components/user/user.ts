@@ -6,6 +6,4 @@ export class User {
   typeMemberId: number;
   mobilephone: number;
   foundationName : string; 
-  ceretificateOfRegistration : string; 
-
 }

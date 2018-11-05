@@ -6,8 +6,11 @@ function User(data) {
   this.password =data.password;
   this.hint =data.hint;
   this.answerhint =data.answerhint;
-  this.typeMember= data.typeMember;
+  this.typeMemberId= data.typeMemberId;
   this.mobilephone = data.mobilephone; 
+  this.foundationName = data.foundationName; 
+  this.ceretificateOfRegistration = data.ceretificateOfRegistration; 
+
 }
 // Member functions go here:
 /* someClass.prototype.someMemberFunction = function () {

@@ -37,4 +37,18 @@ export class UserService {
         }
       );
   }
+
+
+  postFile(fileToUpload:File) {
+
+    const endpoint = "http://localhost:8080/upload";
+    const formData: FormData = new FormData();
+    formData.append('fileKey', fileToUpload, fileToUpload.name);
+     this.http.post(endpoint, formData).subscribe(err => {
+      console.log("file yüklenmedi");
+    },
+    () => {
+      console.log("file yüklendi");
+    });
+  }
 }

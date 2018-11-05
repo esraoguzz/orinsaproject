@@ -23,7 +23,7 @@ router.post("/createUser", (req, res) => {
       user.password,
       user.hint,
       user.answerhint,
-      user.typeMember,
+      user.typeMemberId,
       user.mobilephone
     ],
     function(err, result) {
@@ -47,5 +47,6 @@ router.get("/getUsers", function(request, response) {
     return response.send(JSON.stringify(result.rows));
   });
 });
+
 var user = {router}
 module.exports = user

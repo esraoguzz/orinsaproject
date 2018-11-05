@@ -6,9 +6,11 @@ import { UserComponent } from "./components/user/user.component";
 import { FormsModule } from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material";
 import {MatRadioModule} from "@angular/material/radio";
+import { FileSelectDirective } from 'ng2-file-upload';
+
 
 @NgModule({
-  declarations: [AppComponent, UserComponent],
+  declarations: [AppComponent, UserComponent,FileSelectDirective],
   imports: [BrowserModule, HttpClientModule, FormsModule,MatCheckboxModule,MatRadioModule],
   providers: [],
   bootstrap: [AppComponent]

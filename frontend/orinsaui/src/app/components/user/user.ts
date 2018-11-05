@@ -3,9 +3,9 @@ export class User {
   password: string;
   hint: string;
   answerhint: string;
-  typeMember: string;
+  typeMemberId: number;
   mobilephone: number;
-  alici:boolean;
-  satıcı:boolean;
-  alıcıandsatıcı:boolean;
+  foundationName : string; 
+  ceretificateOfRegistration : string; 
+
 }

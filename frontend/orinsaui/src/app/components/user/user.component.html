@@ -17,39 +17,41 @@
       <input type="text" [(ngModel)]="user.answerhint" class="form-control" name="cevap">
     </div>
     <div class="form-group">
-        <div class="radio">
-          <label><input type="radio" name="optradio" (click)="showhiddendiv(1)" checked>Alıcı</label>
-       
-          <label><input type="radio" name="optradio" style="margin-left: 16px" (click)="showhiddendiv(2)">Satıcı</label>
-       
-          <label><input type="radio" name="optradio" style="margin-left: 16px"  (click)="showhiddendiv(3)">Alıcı-Satıcı</label>
-        </div>      
-    </div>
-    <div > 
-        <div class="form-group">
-          <label>Telefon</label>
-          <input type="text" [(ngModel)]="user.mobilephone" class="form-control" name="telefon">
-        </div>
-        <div id="extra_info" hidden=true>
-          <div class="form-group">
-            <label>Şirket Adı</label>
-            <input type="text" class="form-control" name="sirketAdi">
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlFile">Ticaret Sicil Belgesi</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile">
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlFile1">Vergi Levhası</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-          </div>
-        </div>
+      <div class="radio">
+        <label><input type="radio" name="optradio" (click)="showhiddendiv(1)" checked>Alıcı</label>
 
+        <label><input type="radio" name="optradio" style="margin-left: 16px" (click)="showhiddendiv(2)">Satıcı</label>
+
+        <label><input type="radio" name="optradio" style="margin-left: 16px" (click)="showhiddendiv(3)">Alıcı-Satıcı</label>
       </div>
+    </div>
+    <div>
+      <div class="form-group">
+        <label>Telefon</label>
+        <input type="text" [(ngModel)]="user.mobilephone" class="form-control" name="telefon">
+      </div>
+      <div id="extra_info" hidden=true>
+        <div class="form-group">
+          <label>Şirket Adı</label>
+          <input type="text" [(ngModel)]="user.foundationName" class="form-control" name="sirketAdi">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlFile">Ticaret Sicil Belgesi</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile"  ng2FileSelect [uploader]="uploader">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Vergi Levhası</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+      </div>
+
+    </div>
     <div class="center-div">
-      <input type="checkbox" > <label><a href="link/html-text-link.html">Gizlilik Sözleşmesini</a> okudum, kabul ediyorum.</label>
+      <input type="checkbox"> <label><a href="link/html-text-link.html">Gizlilik Sözleşmesini</a> okudum, kabul
+        ediyorum.</label>
       <br>
-      <input type="checkbox" > <label><a href="link/html-text-link.html">Şartlar ve koşulları</a> okudum, kabul ediyorum.</label>
+      <input type="checkbox"> <label><a href="link/html-text-link.html">Şartlar ve koşulları</a> okudum, kabul
+        ediyorum.</label>
 
     </div>
     <button class="btn btn-primary" style="float: right;" type="submit" (click)="createUsers(user)">Üyeliğimi

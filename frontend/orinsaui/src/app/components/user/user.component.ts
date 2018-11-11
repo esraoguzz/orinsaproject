@@ -9,6 +9,7 @@ import {
   FileItem
 } from "ng2-file-upload/ng2-file-upload";
 import { environment } from "src/environments/environment";
+import { MatDialog } from "@angular/material";
 
 @Component({
   selector: "app-user",
@@ -20,10 +21,10 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService) {}
   user: any = {};
   typeMemberId: number = 1;
-  file1:FileItem;
-
-  file2:FileItem;
-
+  file1: FileItem;
+  file2: FileItem;
+  dialog: MatDialog;
+  
   public uploader1: FileUploader = new FileUploader({
     url: environment.path + "/upload/sicilLevhasi",
     itemAlias: "photo"
@@ -34,21 +35,22 @@ export class UserComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.uploader1.onAfterAddingFile = file=> {
+    this.uploader1.onAfterAddingFile = file => {
       this.file1 = file;
       file.withCredentials = false;
     };
-    this.uploader2.onAfterAddingFile = file=> {
+    this.uploader2.onAfterAddingFile = file => {
       this.file2 = file;
       file.withCredentials = false;
     };
+    
   }
   createUsers(user: User) {
-
     user.typeMemberId = this.typeMemberId;
-    this.uploader1.uploadItem(this.file1);
-    this.uploader2.uploadItem(this.file2);
-
+    if (user.typeMemberId != 1) {
+      this.uploader1.uploadItem(this.file1);
+      this.uploader2.uploadItem(this.file2);
+    }
     this.userService.createUsers(user);
   }
 
@@ -67,4 +69,6 @@ export class UserComponent implements OnInit {
       console.log("3.ci basıldı");
     }
   }
+
 }
+

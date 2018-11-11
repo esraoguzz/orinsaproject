@@ -1,60 +1,165 @@
 <div id="login" class="container">
-  <form class="form-horizontal">
+  <form class="form-horizontal" #f="ngForm" novalidate>
     <div class="form-group">
       <label>Kullanıcı Adı</label>
-      <input type="text" [(ngModel)]="user.username" class="form-control" name="kullanıcıadı" aria-describedby="emailHelp">
+      <input
+        type="text"
+        [(ngModel)]="user.username"
+        class="form-control"
+        name="username"
+        aria-describedby="emailHelp"
+        #username="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && username.invalid }"
+        required
+      />
+      <div class="invalid-feedback">Lütfen kullanıcı adınızı giriniz</div>
     </div>
     <div class="form-group">
       <label>Şifre</label>
-      <input type="password" [(ngModel)]="user.password" class="form-control" name="sifre">
+      <input
+        type="password"
+        [(ngModel)]="user.password"
+        class="form-control"
+        name="password"
+        #password="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && password.invalid }"
+        required
+        minlength="6"
+      />
+      <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+        <div *ngIf="password.errors.required">Lütfen şifrenizi giriniz</div>
+        <div *ngIf="password.errors.minlength">
+          Şifreniz en az 6 karakterli olmalıdır
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label>Güvenlik Sorusu</label>
-      <input type="text" [(ngModel)]="user.hint" class="form-control" name="güvenliksorusu">
+      <input
+        type="text"
+        [(ngModel)]="user.hint"
+        class="form-control"
+        name="güvenliksorusu"
+      />
     </div>
     <div class="form-group">
       <label>Cevabı</label>
-      <input type="text" [(ngModel)]="user.answerhint" class="form-control" name="cevap">
+      <input
+        type="text"
+        [(ngModel)]="user.answerhint"
+        class="form-control"
+        name="cevap"
+      />
     </div>
     <div class="form-group">
       <div class="radio">
-        <label><input type="radio" name="optradio" (click)="showhiddendiv(1)" checked>Alıcı</label>
+        <label
+          ><input
+            type="radio"
+            name="optradio"
+            (click)="showhiddendiv(1)"
+            checked
+          />Alıcı</label
+        >
 
-        <label><input type="radio" name="optradio" style="margin-left: 16px" (click)="showhiddendiv(2)">Satıcı</label>
+        <label
+          ><input
+            type="radio"
+            name="optradio"
+            style="margin-left: 16px"
+            (click)="showhiddendiv(2)"
+          />Satıcı</label
+        >
 
-        <label><input type="radio" name="optradio" style="margin-left: 16px" (click)="showhiddendiv(3)">Alıcı-Satıcı</label>
+        <label
+          ><input
+            type="radio"
+            name="optradio"
+            style="margin-left: 16px"
+            (click)="showhiddendiv(3)"
+          />Alıcı-Satıcı</label
+        >
       </div>
     </div>
     <div>
       <div class="form-group">
         <label>Telefon</label>
-        <input type="text" [(ngModel)]="user.mobilephone" class="form-control" name="telefon">
+        <input
+          type="text"
+          [(ngModel)]="user.mobilephone"
+          class="form-control"
+          name="telefon"
+        />
       </div>
-      <div id="extra_info" hidden=true>
+      <div id="extra_info" hidden="true">
         <div class="form-group">
           <label>Şirket Adı</label>
-          <input type="text" [(ngModel)]="user.foundationName" class="form-control" name="sirketAdi">
+          <input
+            type="text"
+            [(ngModel)]="user.foundationName"
+            class="form-control"
+            name="sirketAdi"
+          />
         </div>
         <div class="form-group">
           <label for="exampleFormControlFile">Ticaret Sicil Belgesi</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile"  ng2FileSelect [uploader]="uploader1">
+          <input
+            type="file"
+            class="form-control-file"
+            id="exampleFormControlFile"
+            ng2FileSelect
+            [uploader]="uploader1"
+          />
         </div>
         <div class="form-group">
           <label for="exampleFormControlFile1">Vergi Levhası</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1" ng2FileSelect [uploader]="uploader2">
+          <input
+            type="file"
+            class="form-control-file"
+            id="exampleFormControlFile1"
+            ng2FileSelect
+            [uploader]="uploader2"
+          />
         </div>
       </div>
-
     </div>
     <div class="center-div">
-      <input type="checkbox"> <label><a href="link/html-text-link.html">Gizlilik Sözleşmesini</a> okudum, kabul
-        ediyorum.</label>
-      <br>
-      <input type="checkbox"> <label><a href="link/html-text-link.html">Şartlar ve koşulları</a> okudum, kabul
-        ediyorum.</label>
-
+      <input type="checkbox" />
+      <label
+        ><a href="link/html-text-link.html">Gizlilik Sözleşmesini</a> okudum,
+        kabul ediyorum.</label
+      >
+      <br />
+      <input type="checkbox" />
+      <label
+        ><a href="link/html-text-link.html">Şartlar ve koşulları</a> okudum,
+        kabul ediyorum.</label
+      >
     </div>
-    <button class="btn btn-primary" style="float: right;" type="submit" (click)="createUsers(user)">Üyeliğimi
-      Onaylıyorum</button>
+
+    <button
+      class="btn btn-primary"
+      style="float: right;"
+      type="submit"
+      (click)="createUsers(user)"
+    >
+      Üyeliğimi Onaylıyorum
+    </button>
   </form>
 </div>
+
+
+<!--
+  <div class="container">
+   Button trigger modal
+      <a href="#myModal" class="btn">I want this</a>
+      </div>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+
+            </div>
+            <div class="modal-body">
+-->

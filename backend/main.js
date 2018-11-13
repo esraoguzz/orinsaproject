@@ -26,7 +26,11 @@ let storage1 = multer.diskStorage({
 
     cb(
       null,
-      file1.fieldname + "-" + Date.now() + "." + path.extname(file1.originalname)
+      file1.fieldname +
+        "-" +
+        Date.now() +
+        "." +
+        path.extname(file1.originalname)
     );
   }
 });
@@ -40,7 +44,11 @@ let storage2 = multer.diskStorage({
     vergiLevhasiName = file2.originalname;
     cb(
       null,
-      file2.fieldname + "-" + Date.now() + "." + path.extname(file2.originalname)
+      file2.fieldname +
+        "-" +
+        Date.now() +
+        "." +
+        path.extname(file2.originalname)
     );
   }
 });
@@ -60,7 +68,9 @@ app.post("/createUser", (req, res) => {
   user.certificateOfRegistration = sicilLevhasiName;
   user.taxPlate = vergiLevhasiName;
   console.log("taxPlate****" + user.taxPlate);
-  console.log("certificateOfRegistration*****" + user.certificateOfRegistration);
+  console.log(
+    "certificateOfRegistration*****" + user.certificateOfRegistration
+  );
 
   console.log("backend baglantısı oldu mu" + user);
 
@@ -87,12 +97,8 @@ app.post("/createUser", (req, res) => {
       }
     }
   );
-
 });
-app.post("/upload/sicilLevhasi", upload1.single("photo"), function(
-  req,
-  res
-) {
+app.post("/upload/sicilLevhasi", upload1.single("photo"), function(req, res) {
   if (!req.file) {
     console.log("No file received");
     return res.send({
@@ -105,10 +111,7 @@ app.post("/upload/sicilLevhasi", upload1.single("photo"), function(
     });
   }
 });
-app.post("/upload/vergiLevhasi", upload2.single("photo"), function(
-  req,
-  res
-) {
+app.post("/upload/vergiLevhasi", upload2.single("photo"), function(req, res) {
   if (!req.file) {
     console.log("No file received");
     return res.send({
@@ -124,3 +127,107 @@ app.post("/upload/vergiLevhasi", upload2.single("photo"), function(
 app.listen(8080, function() {
   console.log("Port dinleniyor 8080...");
 });
+const jwt = require("jsonwebtoken");
+
+app.get("/api", (req, res) => {
+  res.json({
+    message: "Welcome..."
+  });
+});
+app.post("/api/posts", verifyToken, (req, res) => {
+  jwt.verify(req.token, "secretkey", (err, autData) => {
+    if (err) {
+      res.sendStatus(403);
+    } else {
+      res.json({
+        message: "Post created...",
+        autData
+      });
+    }
+  });
+});
+
+app.post("/api/login", (req, res) => {
+  console.log("****tokenservice");
+  const user = {};
+
+  isExistUser("güleser","12313",function(err,isExist){
+    if (!isExist){
+      console.log("***hata");
+      return res.send("not exist");
+
+    }else{
+      jwt.sign(
+        { user },
+        "secretkey",
+        {
+          expiresIn: "30s"
+        },
+        (err, token) => {
+          res.json({
+            token
+          });
+        }
+      );
+      console.log("***"+isExist);
+
+    }
+  });
+ /* if (isExistUser("")) {
+    console.log("+++?");
+
+    jwt.sign(
+      { user },
+      "secretkey",
+      {
+        expiresIn: "30s"
+      },
+      (err, token) => {
+        res.json({
+          token
+        });
+      }
+    );
+  } else {
+    console.log("????");
+    return res.send("not exist");
+  }*/
+});
+
+function verifyToken(req, res, next) {
+  const bearerHeader = req.headers["authorization"];
+  if (typeof bearerHeader !== "undefined") {
+    const bearer = bearerHeader.split(" ");
+    const bearerToken = bearer[1];
+    req.token = bearerToken;
+    next();
+  } else {
+    res.sendStatus(403);
+  }
+}
+function isExistUser(username, password , callback) {
+  client.query(
+    "Select * from t_uye_test2 where isim= '" +
+      username +
+      "' and parola='" +
+      password +
+      "';",
+    function(err, result) {
+      if (err) {
+        console.log("error");
+
+        console.log(err.stack);
+        callback(err,null)
+      } else {
+        if (result.rowCount > 0) {
+          console.log("******" + result.rowCount);
+          console.log("kullanıcı var");
+          callback(null,true)
+        } else {
+          console.log("kullanıcı yok");
+          callback(null,false)
+        }
+      }
+    }
+  );
+}

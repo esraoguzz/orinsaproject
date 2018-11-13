@@ -47,6 +47,7 @@ function verifyToken(req, res, next) {
     res.sendStatus(403);
   }
 }
+
 app.listen(8080, function() {
   console.log("Port dinleniyor 8080...");
 });

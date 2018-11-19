@@ -147,16 +147,16 @@ app.post("/api/posts", verifyToken, (req, res) => {
   });
 });
 
-app.post("/api/login", (req, res) => {
+app.post("/token", (req, res) => {
   console.log("****tokenservice");
-  const user = {};
+  const user = req.body;
 
-  isExistUser("güleser","12313",function(err,isExist){
-    if (!isExist){
+  isExistUser(user.username, user.password, function(err, isExist) {
+    if (!isExist) {
       console.log("***hata");
-      return res.send("not exist");
-
-    }else{
+      console.log("***" + isExist);
+      return res.send(err);
+    } else {
       jwt.sign(
         { user },
         "secretkey",
@@ -164,16 +164,18 @@ app.post("/api/login", (req, res) => {
           expiresIn: "30s"
         },
         (err, token) => {
-          res.json({
-            token
-          });
+          if (!err) {
+            res.json({
+              success: true,
+              token
+            });
+          }
         }
       );
-      console.log("***"+isExist);
-
+      console.log("***" + isExist);
     }
   });
- /* if (isExistUser("")) {
+  /* if (isExistUser("")) {
     console.log("+++?");
 
     jwt.sign(
@@ -205,7 +207,7 @@ function verifyToken(req, res, next) {
     res.sendStatus(403);
   }
 }
-function isExistUser(username, password , callback) {
+function isExistUser(username, password, callback) {
   client.query(
     "Select * from t_uye_test2 where isim= '" +
       username +
@@ -217,15 +219,15 @@ function isExistUser(username, password , callback) {
         console.log("error");
 
         console.log(err.stack);
-        callback(err,null)
+        callback(err, null);
       } else {
         if (result.rowCount > 0) {
           console.log("******" + result.rowCount);
           console.log("kullanıcı var");
-          callback(null,true)
+          callback(null, true);
         } else {
           console.log("kullanıcı yok");
-          callback(null,false)
+          callback("kullanıcı yok", false);
         }
       }
     }

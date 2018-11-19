@@ -8,9 +8,10 @@ import {MatCheckboxModule} from "@angular/material";
 import {MatRadioModule} from "@angular/material/radio";
 import { FileSelectDirective } from 'ng2-file-upload';
 import {MatDialogModule} from '@angular/material/dialog';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, UserComponent,FileSelectDirective],
+  declarations: [AppComponent, UserComponent,FileSelectDirective, LoginComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule,MatCheckboxModule,MatRadioModule,MatDialogModule],
   providers: [],
   bootstrap: [AppComponent]

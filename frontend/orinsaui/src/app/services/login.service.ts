@@ -14,15 +14,14 @@ export class LoginService {
     this.http
       .post(this.path + "/token",{username : username,password:password})
       .subscribe(
-        err => {
-          console.log("basarısız");
-          console.log(err)
-        },
-        () => {
+        (data) => {
           console.log("basarılı");
-        }
-
-        
+          console.log(data)
+        },
+        (err) => {
+          console.log("basarısiz");
+          console.log(err)
+        }  
       );
   }
 }

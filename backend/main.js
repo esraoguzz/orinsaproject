@@ -155,7 +155,7 @@ app.post("/token", (req, res) => {
     if (!isExist) {
       console.log("***hata");
       console.log("***" + isExist);
-      return res.send(err);
+      return err;
     } else {
       jwt.sign(
         { user },

@@ -9,10 +9,13 @@ import {MatRadioModule} from "@angular/material/radio";
 import { FileSelectDirective } from 'ng2-file-upload';
 import {MatDialogModule} from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module'; 
 
 @NgModule({
-  declarations: [AppComponent, UserComponent,FileSelectDirective, LoginComponent],
-  imports: [BrowserModule, HttpClientModule, FormsModule,MatCheckboxModule,MatRadioModule,MatDialogModule],
+  declarations: [AppComponent, UserComponent,FileSelectDirective, LoginComponent, HomepageComponent],
+  imports: [BrowserModule, HttpClientModule, FormsModule,MatCheckboxModule,MatRadioModule,MatDialogModule,RouterModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })

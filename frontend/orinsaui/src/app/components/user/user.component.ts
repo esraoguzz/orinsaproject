@@ -52,6 +52,7 @@ export class UserComponent implements OnInit {
       this.uploader2.uploadItem(this.file2);
     }
     this.userService.createUsers(user);
+
   }
 
   showhiddendiv(option: number) {

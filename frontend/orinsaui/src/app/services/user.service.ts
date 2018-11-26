@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { User } from "../components/user/user";
 import { Observable } from "rxjs";
+import { Router } from "../../../node_modules/@angular/router";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,public router: Router) {}
   path = environment.path;
 
   /*createUser(user: User) {
@@ -22,6 +23,9 @@ export class UserService {
     headers = headers.append("Content-Type","application/json")
     this.http.get(this.path+'/getUsers',{headers:headers}).subscribe
   }*/
+ 
+
+
 
   createUsers(user: User) {
     const headers = new HttpHeaders({ "Content-Type": "application/json" });
@@ -34,6 +38,7 @@ export class UserService {
         },
         () => {
           console.log("basarılı");
+          this.router.navigate([''])
         }
       );
   }

@@ -24,12 +24,12 @@
         #password="ngModel"
         [ngClass]="{ 'is-invalid': f.submitted && password.invalid }"
         required
-        minlength="6"
+        minlength="8"
       />
       <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
         <div *ngIf="password.errors.required">Lütfen şifrenizi giriniz</div>
         <div *ngIf="password.errors.minlength">
-          Şifreniz en az 6 karakterli olmalıdır
+          Şifreniz en az 8 karakterli olmalıdır
         </div>
       </div>
     </div>
